@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MatrixMages.Models.Victory>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Виграші</h1>
+
+<p>
+    <a asp-action="Create">Додати</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Витрачена мана 
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BattleMage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpaceMage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Victory1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BattleMage.StrategyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpaceMage.StrategyName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-controller="Victories" asp-route-battlemageId="@item.BattleMageId" asp-route-spacemageId="@item.SpaceMageId">Змінити</a>
+                <a asp-action="Delete" asp-controller="Victories" asp-route-battlemageId="@item.BattleMageId" asp-route-spacemageId="@item.SpaceMageId">Видалити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
